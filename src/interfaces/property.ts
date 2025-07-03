@@ -1,0 +1,20 @@
+interface Property {
+    address: string,
+    amenities: string[],
+    bathroom: number,
+    bedroom: number,
+    builtDate: string,
+    dateListed: string,
+    description: string,
+    furnished: string,
+    id: string,
+    images: string[],
+    isBought: boolean,
+    lister: User,
+    name: string,
+    owner: string,
+    price: number,
+    size: number,
+    tenure: string,
+    type: string
+}
