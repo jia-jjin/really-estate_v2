@@ -57,7 +57,7 @@ export default function Page({ params: { type } }: { params: any }) {
 
     // GOOGLE MAPS (deprecated since it requires credit/debit card info)
     // const {isLoaded} = useLoadScript({
-    //     googleMapsApiKey: "AIzaSyABgXWW3tmW6B5O4jaJpdNSWzLPgRbqmIw"
+    //     googleMapsApiKey: apiKey
     // })
     // if(!isLoaded) return <div>isLoading</div>
 
