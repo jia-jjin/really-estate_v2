@@ -228,7 +228,7 @@ export default function PropertySwiper() {
             </Button> */}
           </div>
           <div className="text-center mt-8">
-            <h2 className="text-lg mb-4 opacity-80">You're all caught up! <br /> 👍🤩</h2>
+            <h2 className="text-lg mb-4 opacity-80">{"You\'re all caught up!"}<br /> 👍🤩</h2>
             {/* <p>Liked properties: {liked.length}</p> */}
           </div>
         </div>)}

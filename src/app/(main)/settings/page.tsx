@@ -584,7 +584,7 @@ export default function Settings() {
                                 {
                                     properties.map((property: Property) => {
                                         return (
-                                            <div className="w-full flex xs:flex-row gap-4 flex-col rounded-xl justify-between content-between mt-2 bg-slate-300 min-h-[200px] p-4 shadow-xl">
+                                            <div key={property.id} className="w-full flex xs:flex-row gap-4 flex-col rounded-xl justify-between content-between mt-2 bg-slate-300 min-h-[200px] p-4 shadow-xl">
                                                 {/* <div className="xs:w-[200px] w-full h-[200px] rounded-xl">
                                                     <Image height={1000} width={1000} src={property.images[0]} alt="property_image" className="rounded-xl object-cover h-full w-full" />
                                                 </div> */}

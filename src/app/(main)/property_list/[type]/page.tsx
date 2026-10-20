@@ -271,7 +271,7 @@ export default function Page({ params: { type } }: { params: any }) {
                         </div>
                         : properties.map((property: Property, index: number) => {
                             return (
-                                <div className="w-[400px]">
+                                <div className="w-[400px]" key={property.id}>
                                     <PropertyCard property={property} index={index} canChat={true} userID={userID} startChat={startChat} />
                                 </div>
                             );
