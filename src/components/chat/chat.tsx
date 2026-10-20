@@ -67,9 +67,9 @@ export function Chat() {
 
                 // Wait for all fetchPromises to complete
                 const results = await Promise.all(fetchPromises) as Chat[];
-                // results.sort((a, b) => (
-                //     moment(a.dateCreated).isAfter(moment(b.dateCreated)) ? -1 : 1
-                // ))
+                results.sort((a, b) => (
+                    moment(a.dateCreated).isAfter(moment(b.dateCreated)) ? -1 : 1
+                ))
                 // console.log(results)
                 setChats(results);
             }, (error) => {

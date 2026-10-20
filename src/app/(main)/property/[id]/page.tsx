@@ -7,7 +7,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import Error from "next/error";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import moment from "moment";
 import ImagesCarousel from "@/components/property/ImagesCarousel";
 import { getCookies } from "@/utils/firebase";
@@ -84,15 +84,15 @@ const Property = ({ params: { id } }: { params: any }) => {
             const docRef = doc(db, 'properties', id)
             let docSnapshot = await getDoc(docRef)
             if (docSnapshot.exists()) {
-                const storageRef = ref(storage, `properties/${id}`);
-                const images = await listAll(storageRef)
-                const tempImages: any[] = []
-                await Promise.all(
-                    images.items.map(async imageRef => {
-                        const tempImage = await getDownloadURL(imageRef)
-                        tempImages.push(tempImage)
-                    })
-                )
+                // const storageRef = ref(storage, `properties/${id}`);
+                // const images = await listAll(storageRef)
+                // const tempImages: any[] = []
+                // await Promise.all(
+                //     images.items.map(async imageRef => {
+                //         const tempImage = await getDownloadURL(imageRef)
+                //         tempImages.push(tempImage)
+                //     })
+                // )
                 const replacedText = docSnapshot.data().description.split('\n').map((word: String, index: number) => (
                     <Fragment key={word + "-" + index}>
                         {word}
@@ -105,7 +105,8 @@ const Property = ({ params: { id } }: { params: any }) => {
                 if (lister.exists()) {
                     listerData = { id: lister.id, ...lister.data() }
                 }
-                setPropertyFound({ ...docSnapshot.data(), description: replacedText, id: docSnapshot.id, images: tempImages, lister: listerData, })
+                // setPropertyFound({ ...docSnapshot.data(), description: replacedText, id: docSnapshot.id, images: tempImages, lister: listerData, })
+                setPropertyFound({ ...docSnapshot.data(), description: replacedText, id: docSnapshot.id, lister: listerData, })
             }
             setIsLoading(false)
         }
@@ -189,7 +190,7 @@ const Property = ({ params: { id } }: { params: any }) => {
                     </div>
                     <ImagesCarousel images={propertyFound.images} isVisible={isVisible} setIsVisible={setIsVisible} />
                     <div className="max-w-3xl sm:h-[500px] h-[200px] rounded-xl mx-auto relative group">
-                        {propertyFound.images.length > 1 ? <>
+                        {/* {propertyFound.images.length > 1 ? <>
                             <Image height={1000} width={1000} src={propertyFound.images[0]} alt="" className="rounded-xl cursor-pointer object-cover h-full w-full" onClick={() => setIsVisible(true)} />
                             <div className="size-full absolute top-0 left-0 bg-black rounded-xl group-hover:opacity-40 opacity-0 pointer-events-none duration-250">
                             </div>
@@ -202,7 +203,8 @@ const Property = ({ params: { id } }: { params: any }) => {
                                     <p className="m-0 text-lg">Click to see more images.</p>
                                 </div>
                             </div>
-                        </> : <Image height={1000} width={1000} src={propertyFound.images[0]} alt="" className="rounded-xl object-cover h-full w-full" />}
+                        </> : <Image height={1000} width={1000} src={propertyFound.images[0]} alt="" className="rounded-xl object-cover h-full w-full" />} */}
+                        <Image height={1000} width={1000} src="/condo.jpg" alt="" className="rounded-xl object-cover h-full w-full" />
                     </div>
                     <div className="flex h-full lg:flex-row flex-col">
                         <div className="lg:w-2/3 w-full">

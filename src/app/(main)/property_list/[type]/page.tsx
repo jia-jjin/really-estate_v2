@@ -95,11 +95,11 @@ export default function Page({ params: { type } }: { params: any }) {
         let querySnapshot = await getDocs(q);
 
         const fetchPromises = querySnapshot.docs.map(async (docz) => {
-            const storageRef = ref(storage, `properties/${docz.id}`);
-            const images = await listAll(storageRef)
-            const tempImages: any[] = []
-            const tempImage = await getDownloadURL(images.items[0])
-            tempImages.push(tempImage)
+            // const storageRef = ref(storage, `properties/${docz.id}`);
+            // const images = await listAll(storageRef)
+            // const tempImages: any[] = []
+            // const tempImage = await getDownloadURL(images.items[0])
+            // tempImages.push(tempImage)
             // const imagesFetching = images.items.map(async imageRef => {
             // })
             const listerRef = doc(db, 'users', docz.data().owner)
@@ -109,7 +109,8 @@ export default function Page({ params: { type } }: { params: any }) {
                 listerData = { id: lister.id, ...lister.data() }
             }
             // await Promise.all(imagesFetching)
-            tempData.push({ id: docz.id, ...docz.data(), images: tempImages, lister: listerData });
+            // tempData.push({ id: docz.id, ...docz.data(), images: tempImages, lister: listerData });
+            tempData.push({ id: docz.id, ...docz.data(), lister: listerData });
         });
         await Promise.all(fetchPromises)
         const searchResults = tempData.filter((item: any) => {

@@ -7,7 +7,8 @@ const PropertyCard = ({property, index, userID, startChat, canChat, className}: 
     return (<Card className="w-full h-full" key={'property' + index}>
         <Link scroll={true} href={`/property/${property.id}`} className="opacity-100 hover:opacity-90 cursor-pointer transition-all duration-200 h-full">
             <CardHeader className="p-0 w-full h-[200px]">
-                <Image height={1000} width={1000} src={property.images[0]} alt="" className="object-cover w-full h-full" />
+                {/* <Image height={1000} width={1000} src={property.images[0]} alt="" className="object-cover w-full h-full" /> */}
+                <Image height={1000} width={1000} src="/condo.jpg" alt="" className="object-cover w-full h-full" />
             </CardHeader>
             <hr />
             <CardBody className="pb-0 pt-2 px-4 flex-col items-start">

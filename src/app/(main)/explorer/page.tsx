@@ -72,10 +72,10 @@ export default function PropertySwiper() {
 
     const fetchPromises = searchResults.map(async (docz: any) => {
       const storageRef = ref(storage, `properties/${docz.id}`);
-      const images = await listAll(storageRef)
-      const tempImages: any[] = []
-      const tempImage = await getDownloadURL(images.items[0])
-      tempImages.push(tempImage)
+      // const images = await listAll(storageRef)
+      // const tempImages: any[] = []
+      // const tempImage = await getDownloadURL(images.items[0])
+      // tempImages.push(tempImage)
       // const imagesFetching = images.items.map(async imageRef => {
       // })
       const listerRef = doc(db, 'users', docz.owner)
@@ -85,7 +85,8 @@ export default function PropertySwiper() {
         listerData = { id: lister.id, ...lister.data() }
       }
       // await Promise.all(imagesFetching)
-      tempData.push({ id: docz.id, ...docz, images: tempImages, lister: listerData });
+      // tempData.push({ id: docz.id, ...docz, images: tempImages, lister: listerData });
+      tempData.push({ id: docz.id, ...docz, lister: listerData });
     });
     await Promise.all(fetchPromises)
     setProperties(tempData);

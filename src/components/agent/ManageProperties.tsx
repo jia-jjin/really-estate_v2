@@ -21,31 +21,32 @@ const ManageProperties = () => {
                     setTimeout(async () => {
                         const tempData: any = [];
                         const fetchPromises = querySnapshot.docs.map(async (docz) => {
-                            const storageRef = ref(storage, `properties/${docz.id}`);
-                            const images = await listAll(storageRef)
-                            const tempImages: any[] = []
-                            const tempCoverImages = []
-                            const tempCoverImage = await getDownloadURL(images.items[0])
-                            tempCoverImages.push(tempCoverImage)
-                            const imagesFetching = images.items.map(async imageRef => {
-                                const blob = new Blob([await getBytes(imageRef)], { type: 'image/jpeg' })
-                                const tempImage = new File([blob], imageRef.name, { type: "image/jpeg" })
-                                tempImages.push(tempImage)
-                            })
+                            // const storageRef = ref(storage, `properties/${docz.id}`);
+                            // const images = await listAll(storageRef)
+                            // const tempImages: any[] = []
+                            // const tempCoverImages = []
+                            // const tempCoverImage = await getDownloadURL(images.items[0])
+                            // tempCoverImages.push(tempCoverImage)
+                            // const imagesFetching = images.items.map(async imageRef => {
+                            //     const blob = new Blob([await getBytes(imageRef)], { type: 'image/jpeg' })
+                            //     const tempImage = new File([blob], imageRef.name, { type: "image/jpeg" })
+                            //     tempImages.push(tempImage)
+                            // })
                             const listerRef = doc(db, 'users', docz.data().owner)
                             const lister = await getDoc(listerRef)
                             let listerData = {}
                             if (lister.exists()) {
                                 listerData = lister.data()
                             }
-                            await Promise.all(imagesFetching)
+                            // await Promise.all(imagesFetching)
                             const collectionRef = collection(db, 'amenities')
                             const amenitiesSnapshot = await getDocs(collectionRef)
                             const allAmenities = amenitiesSnapshot.docs.map(doc => ({
                                 ...doc.data(),
                                 id: doc.id
                             }))
-                            tempData.push({ id: docz.id, ...docz.data(), coverImage: tempCoverImages, imagesRef: images.items, images: tempImages, lister: listerData, defaultAmenities: allAmenities});
+                            // tempData.push({ id: docz.id, ...docz.data(), coverImage: tempCoverImages, imagesRef: images.items, images: tempImages, lister: listerData, defaultAmenities: allAmenities});
+                            tempData.push({ id: docz.id, ...docz.data(), lister: listerData, defaultAmenities: allAmenities});
                         })
                         await Promise.all(fetchPromises)
                         await setProperties(tempData);
